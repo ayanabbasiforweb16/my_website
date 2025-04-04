@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Vision Spark</title>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init('stxAVC7ZEW92x3iMb');
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="#">Vision Spark</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1>Ignite the Future with Vision Spark</h1>
+            <p class="subtitle">Empowering Youth Through IT!</p>
+            <div class="divider"></div>
+            <p class="description">A project aimed at raising awareness about the growth of IT among Pakistani youth, utilizing surveys, interviews, and social media to inspire and empower the next generation to explore IT careers.</p>
+        </div>
+        <div class="hero-image">
+            <img src="images/download.png" alt="Vision Spark Image">
+        </div>
+    </div>
+
+    <div class="about-section">
+        <div class="about-content">
+            <h2>About Us</h2>
+            <div class="divider"></div>
+            <p>Vision Spark focuses on identifying factors affecting IT growth among Pakistani youth and raising awareness for a better future, as technology is one of the most sustainable skills globally.</p>
+            
+            <div class="team-members">
+                <div class="member-box">
+                    <img src="images/screenshot.png" alt="Umar Mumtaz">
+                    <h3>Umar Mumtaz</h3>
+                </div>
+                <div class="member-box">
+                    <img src="ayan.png" alt="Ayan Abbasi">
+                    <h3>Ayan Abbasi</h3>
+                </div>
+                <div class="member-box">
+                    <img src="sarima.png" alt="Sarim Bilal">
+                    <h3>Sarim Bilal</h3>
+                </div>
+                <div class="member-box">
+                    <img src="talal.png" alt="Talal Abbasi">
+                    <h3>Talal Abbasi</h3>
+                </div>
+                <div class="member-box">
+                    <img src="khawaja.png" alt="Khawaja Ibrahim">
+                    <h3>Khawaja Ibrahim</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="updates-section" id="updates">
+        <div class="updates-content">
+            <h2>Project Updates</h2>
+            <div class="divider"></div>
+            
+            <div class="updates-grid">
+                <div class="update-box">
+                    <div class="update-icon">📊</div>
+                    <h3>Surveys Completed</h3>
+                    <p>We've conducted extensive surveys with 150+ Pakistani youth to understand their perspectives on IT careers.</p>
+                </div>
+                
+                <div class="update-box">
+                    <div class="update-icon">🎤</div>
+                    <h3>Expert Interviews</h3>
+                    <p>Interviewed an IT specialist to gather insights about the IT sector in Pakistan.</p>
+                </div>
+                
+                <div class="update-box">
+                    <div class="update-icon">🎥</div>
+                    <h3>Documentary in Progress</h3>
+                    <p>Currently producing a documentary showcasing insights of the project.</p>
+                </div>
+                
+                <div class="update-box">
+                    <div class="update-icon">📱</div>
+                    <h3>Instagram Campaign</h3>
+                    <p>Launched our Instagram page (@visionspark) with regular updates and motivational content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-section" id="contact">
+        <div class="message-content">
+            <h2>Support Our Mission</h2>
+            <div class="divider"></div>
+            <p>Your support can help us empower more youth through IT education. Send us a message if you'd like to contribute or collaborate.</p>
+            
+            <form class="message-form" id="contactForm">
+                <input type="hidden" name="to_email" value="ayan.footy567@gmail.com">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="from_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" name="from_email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="send-button" id="sendBtn">Send Message</button>
+                </div>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const sendBtn = document.getElementById('sendBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            sendBtn.textContent = 'Sending...';
+            sendBtn.disabled = true;
+            formMessage.style.display = 'none';
+            
+            emailjs.sendForm('service_kkgps9l', 'template_7khjlsi', this)
+                .then(function() {
+                    formMessage.textContent = 'Message sent successfully!';
+                    formMessage.className = 'form-message success';
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    formMessage.textContent = 'Error: ' + error.text;
+                    formMessage.className = 'form-message error';
+                    console.error('EmailJS Error:', error);
+                })
+                .finally(function() {
+                    formMessage.style.display = 'block';
+                    sendBtn.textContent = 'Send Message';
+                    sendBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
